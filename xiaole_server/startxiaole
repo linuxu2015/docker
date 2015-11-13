@@ -1,0 +1,19 @@
+#!/bin/bash
+#cd /home/wwwroot/wwwroot &&  /usr/local/php-5/bin/php ./cli.php Index/stop && cd /home/wwwroot/wwwroot &&  /usr/local/php-5/bin/php ./cli.php Index/start
+#cd /home/wwwroot/wwwroot &&  /usr/local/php-5/bin/php ./cli.php HeartbeatTest/stop && cd /home/wwwroot/wwwroot &&  /usr/local/php-5/bin/php ./cli.php HeartbeatTest/start
+#/usr/local/php/bin/php /server/wwwroot/cli.php Index/stop && /usr/local/php/bin/php /server/wwwroot/cli.php Index/start
+#/usr/local/php/bin/php /server/wwwroot/cli.php HeartbeatTest/stop && /usr/local/php/bin/php /server/wwwroot/cli.php HeartbeatTest/start
+service nginx restart
+/usr/local/php/sbin/php-fpm -D 
+while true;do
+a=`ifconfig | grep eth1 | wc -l`
+if [ $a = 1 ];then
+#echo 'ok'
+cd /server/wwwroot && /usr/local/php/bin/php ./cli.php Index/start
+cd /server/wwwroot && /usr/local/php/bin/php ./cli.php HeartbeatTest/start
+break
+else
+sleep 5
+echo 'service not running' >> /server/logs/service.log
+fi
+done
