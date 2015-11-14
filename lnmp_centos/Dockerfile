@@ -23,7 +23,7 @@ RUN sed -i 's@user = apache@user = nobody@g' /etc/php-fpm.d/www.conf
 COPY supervisord.conf /etc/supervisord.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY my.cnf /etc/my.cnf
-COPY start.sh /usr/bin/start_mysql.sh
+COPY start_mysql.sh /usr/bin/start_mysql.sh
 ##创建数据卷
 VOLUME ["/web"]
 #VOLUME ['/var/log/mysql']
