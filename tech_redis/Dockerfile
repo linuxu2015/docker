@@ -18,12 +18,13 @@ RUN \
   make && \
   make install && \
   mkdir -p /var/redis/log && \
+  touch /var/redis/log/redis.log && \
   cp -f src/redis-sentinel /usr/local/bin && \
   mkdir -p /etc/redis && \
-  cp -f *.conf /etc/redis && \
+  cp -f sentinel.conf /etc/redis && \
   rm -rf /tmp/redis-stable*
 
-#ADD redis.conf /etc/redis/redis.conf
+COPY redis.conf /etc/redis/
 
 # Expose ports.
 EXPOSE 6379
